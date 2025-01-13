@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#grass{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0px;
+}
+
+#scene{
+    position: relative;
+    width: fit-content;
+    height: 100%;
+}
+
+#background{
+    position: relative;
+    display: block;
+}
+
+#grass img:hover {
+    background-color: rgba(255,255,0,.5);
+}
+
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+#container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+#gameArea {
+    flex-basis: 60%;
+}
+
+#infoPanel {
+    flex-basis: 35%;
+    padding: 20px;
+    border-left: 2px solid #ccc;
+}
+
+#infoPanel h1 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#infoPanel p, #infoPanel div {
+    font-size: 16px;
+}
+
+#progress {
+    font-size: 22px !important;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+#playAgainBtn {
+    margin-top: 20px;
+    font-size: 16px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.missed {
+    opacity: 0.5; /* add opacity to reveal the other grass patches */
+}
+
+#resultHistory {
+    margin-top: 20px;
+}
+
+#historyList {
+    list-style-type: none;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+#clearHistoryBtn, #startOverBtn {
+    margin-top: 10px;
+    font-size: 16px;
+    padding: 5px 10px;
+    cursor: pointer;
+}

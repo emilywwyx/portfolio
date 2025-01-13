@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Gotta Catch 'em All!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <div id="gameArea">
+            <div id="scene">
+                <img id="background" src="images/environment_forestbackground.png">
+                <div id="grass">
+                    <img id="grass1" src="images/grass.png">
+                    <img id="grass2" src="images/grass.png">
+                    <img id="grass3" src="images/grass.png">
+                </div>
+            </div>
+        </div>
+        <div id="infoPanel">
+            <h1>Gotta Catch 'em All!</h1>
+            <br>
+            <p>Your goal in this game is to earn as many Pokeballs as possible while catching a variety of Pokemon along the way.</p>
+            <br>
+            <p>To play, simply click on one of the three grass clumps in the forest. Behind one of those grass clumps is a Pokemon that can be caught. Behind another grass clump are two free Pokeballs that you can use to try again, and behind the last grass clump is nothing.</p>
+            <br>
+            <p>Note that each time you pick a grass clump you will be using one of your Pokeballs, and when you run out the game is over!</p>
+            <div id="progress">Your progress so far ...</div>
+            <br>
+            <div>Pokeballs left: <span id="pokeballCount">5</span></div>
+            <br>
+            <div>Pokemon caught: <span id="pokemonCaught">0</span></div>
+            <br>
+            <button id="playAgainBtn" style="display: none;">Play Again</button>
+            <div id="resultHistory">
+                <h2>Result History</h2>
+                <ul id="historyList"></ul>
+            </div>
+            <button id="clearHistoryBtn">Clear History</button>
+            <button id="startOverBtn">Start Over</button>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
