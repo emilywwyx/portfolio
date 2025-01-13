@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <title>Seasonal To-Do List</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <header>
+            <h1>Seasonal To-Do List</h1>
+        </header>
+        <main>
+            <div class="filter">
+                <select name="seasons">
+                    <option value="all" selected>Show all seasons</option>
+                    <option value="spring">Show only Spring items</option>
+                    <option value="summer">Show only Summer items</option>
+                    <option value="fall">Show only Fall items</option>
+                    <option value="winter">Show only Winter items</option>
+                </select>
+            </div>
+
+            <div id="addBtn">
+                <img src="images/add_button.png">
+            </div>
+            <div class="container">
+            </div>
+
+            <div class="add-panel hidden">
+                <h2>Add New Item</h2>
+                <div id="error-message" class="hidden">Please completely fill out the form</div>
+                <div class="subpanel">
+                    Title:
+                    <br>
+                    <input type="text" id="activity-title">
+                </div>
+                <div class="subpanel">
+                    Category:
+                    <br>
+                    <select name="category" class="select-category">
+                        <option value="spring">Spring</option>
+                        <option value="summer">Summer</option>
+                        <option value="fall">Fall</option>
+                        <option value="winter">Winter</option>
+                    </select>
+                </div>
+                <div class="subpanel">
+                    Description:
+                    <br>
+                    <textarea id="description-text"></textarea>
+                </div>
+                <div class="subpanel">
+                    <button id="save">Save</button>
+                    <button id="cancel">Cancel</button>
+                </div>
+            </div>
+
+            <div class="info-panel hidden">
+                <h2 class="panel-name">Name</h2>
+                <p class="season">Season: </p>
+                <p class="description-text">Description</p>
+                <p class="created-time">Created: </p>
+                <p class="last-access-time">Last Accessed: </p>
+                <button id="close">Close</button>
+            </div>
+
+        </main>
+        <script src="script.js"></script>
+    </body>
+</html>

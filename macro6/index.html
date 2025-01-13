@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <title>Matching Game</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <header>
+            <h1 class="start-title">Memory Matching Madness!</h1>
+            <h1 class="play-title hidden">Ready, Set, Match!</h1>
+            <h1 class="game-over-title hidden">Game over!</h1>
+        </header>
+        <main>
+            <div id="start-screen" class="screen">
+                <p>Play a fast-paced game of "memory" and try and beat your best time!</p>
+                <p>Choose difficulty and start!</p>
+                <select id="difficulty">
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+                <button id="startBtn">Start!</button>
+            </div>
+            
+            <div id="play-screen" class="screen hidden">
+                <p>Time: <span id="time">0</span></p>
+                <div class="container hidden"></div>
+            </div>
+
+            <div id="game-over-screen" class="screen hidden">
+                <p>Your time: <span id="final-time"></span></p>
+                <p>Best time: <span id="best-time"></span></p>
+                <button id="playAgainBtn">Play Again!</button>
+            </div>
+
+        </main>
+        <script src="script.js"></script>
+
+    </body>
+</html>
+        
