@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: rgb(211, 238, 255);
+            margin: 40px;
+            font-size: 16px;
+        }
+        .hidden {
+            display: none;
+        }
+        select, input[type="text"], input[type="password"], button {
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+    </style>
+    <script src="helpers.js"></script>
+</head>
+<body>
+    <h1>Admin Panel</h1>
+    <div id="loginPanel">
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button id="loginBtn">Login</button>
+    </div>
+
+    <div id="adminActions" class="hidden">
+        <select id="chatRoomSelect">
+            <option value="1">Room 1</option>
+            <option value="2">Room 2</option>
+        </select>
+        <button id="clearChat">Clear Chat</button>
+
+        <div id="systemLogs"></div>
+    </div>
+
+    <script>
+        const loginPanel = document.getElementById('loginPanel');
+        const adminActions = document.getElementById('adminActions');
+        const systemLogsDiv = document.getElementById('systemLogs');
+        const chatRoomSelect = document.getElementById('chatRoomSelect');
+
+        document.getElementById('loginBtn').onclick = function () {
+            performLogin();
+        };
+
+        document.getElementById('clearChat').onclick = function () {
+            clearChat();
+        };
+
+        chatRoomSelect.onchange = function () {
+            loadSystemLogs();
+        };
+
+        function performLogin() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            performFetch({
+                method: 'POST',
+                url: 'adminLogin.php',
+                data: { username, password },
+                success: function (data) {
+                    if (data === 'success') {
+                        loginPanel.classList.add('hidden');
+                        adminActions.classList.remove('hidden');
+                        loadSystemLogs();
+                    } else {
+                        alert('Invalid credentials');
+                    }
+                },
+                error: function () {
+                    console.error('Error checking credentials');
+                }
+            });
+        }
+
+        function clearChat() {
+            const roomID = chatRoomSelect.value;
+            performFetch({
+                method: 'POST',
+                url: 'clearChat.php',
+                data: { roomID },
+                success: function () {
+                    alert('Chat cleared successfully');
+                },
+                error: function () {
+                    alert('Error clearing chat');
+                }
+            });
+        }
+
+        function loadSystemLogs() {
+            const roomID = chatRoomSelect.value;
+            performFetch({
+                method: 'GET',
+                url: 'getSystemLogs.php',
+                data: { roomID },
+                success: function (data) {
+                    systemLogsDiv.innerHTML = data;
+                },
+                error: function () {
+                    console.error('Error loading system logs');
+                    systemLogsDiv.innerHTML = 'Failed to load system logs.';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

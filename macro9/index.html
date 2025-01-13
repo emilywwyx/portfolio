@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Let's Chat!</title>
+    <script src="helpers.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: rgb(211, 238, 255);
+            margin: 40px;
+            font-size: 16px;
+        }
+
+        .panel {
+            margin-bottom: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .entry {
+            margin-bottom: 10px;
+        }
+
+        .chat-room {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid grey;
+            padding: 10px;
+            height: 500px;
+        }
+
+        #nicknamePanel, #chatPanel {
+            margin-bottom: 20px;
+        }
+
+        #chatHistory {
+            font-family: Courier, monospace;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Let's Chat!</h1>
+
+    <!-- Nickname Panel -->
+    <div id="nicknamePanel" class="panel">
+        <label for="nickname">Select a username:</label>
+        <br>
+        <br>
+        <input type="text" id="nickname">
+        <button id="nicknameBtn">Start Chatting!</button>
+    </div>
+
+    <!-- Chat Room Selection -->
+    <div id="chatPanel" class="panel hidden">
+        <!-- Chat Room Panel -->
+        <select id="chatRoomSelect">
+            <option value="1">Room 1</option>
+            <option value="2">Room 2</option>
+        </select>
+
+        <div id="chatRoomPanel">
+            <div class="chat-room" id="chatHistory"></div>
+            <div>
+                <input type="text" id="message" maxlength="100">
+                <button id="sendBtn">Send Message</button>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <div>
+        <a href="admin.html" style="margin-bottom: 20px; display: block;">Go to Admin Panel</a>
+    </div>
+
+    <script>
+        const nicknamePanel = document.getElementById('nicknamePanel');
+        const chatPanel = document.getElementById('chatPanel');
+        const chatHistory = document.getElementById('chatHistory');
+        const nicknameBtn = document.getElementById('nicknameBtn');
+        const sendBtn = document.getElementById('sendBtn');
+        const nicknameInput = document.getElementById('nickname');
+        const messageInput = document.getElementById('message');
+        const chatRoomSelect = document.getElementById('chatRoomSelect');
+
+        let nickname = '';
+        let shouldAutoScroll = true;
+
+        // Handle nickname submission
+        nicknameBtn.onclick = function () {
+            nickname = nicknameInput.value.trim();
+            performFetch({
+                method: 'POST',
+                url: 'uniqueNicknameCheck.php',
+                data: { nickname },
+                success: function (isUnique) {
+                    if (isUnique === 'true') {
+                        nicknamePanel.classList.add('hidden');
+                        chatPanel.classList.remove('hidden');
+                        getExistingMessages(); // Load chat messages
+                    } else {
+                        alert('Nickname already taken, choose another.');
+                    }
+                },
+                error: function () {
+                    console.log('Error checking nickname uniqueness');
+                }
+            });
+        };
+
+        // Handle message submission
+        sendBtn.onclick = function () {
+            const messageText = messageInput.value.trim();
+            const roomID = chatRoomSelect.value;
+            if (messageText.length > 0) {
+                sendChatMessage(messageText, nickname, roomID); // Send new message
+                messageInput.value = ''; // Clear input
+            } else {
+                alert('Message cannot be empty');
+            }
+        };
+
+        // Detect hovering over chatHistory to enable/disable auto-scrolling
+        chatHistory.addEventListener('mouseenter', () => {
+            shouldAutoScroll = false;
+        });
+
+        chatHistory.addEventListener('mouseleave', () => {
+            shouldAutoScroll = true;
+            chatHistory.scrollTop = chatHistory.scrollHeight; // Scroll to the bottom
+        });
+
+        // Add message to the chat history
+        function addMessageToChat(name, message) {
+            const msgDiv = document.createElement('div');
+            msgDiv.classList.add('entry');
+            msgDiv.innerHTML = `<strong>${name}</strong>: ${message}`;
+            chatHistory.appendChild(msgDiv);
+
+            // Only scroll to the bottom if shouldAutoScroll is true
+            if (shouldAutoScroll) {
+                chatHistory.scrollTop = chatHistory.scrollHeight;
+            }
+        }
+
+        // Get existing messages from the server
+        function getExistingMessages() {
+            const roomID = chatRoomSelect.value;
+            performFetch({
+                method: 'GET',
+                url: 'getmessages.php',
+                data: { roomID },
+                success: function (data) {
+                    const messages = JSON.parse(data);
+                    chatHistory.innerHTML = ''; // Clear chat history
+                    messages.forEach(msg => addMessageToChat(msg.name, msg.message));
+                },
+                error: function () {
+                    console.log('Error loading messages');
+                }
+            });
+        }
+
+        // Send a message to the server
+        function sendChatMessage(message, name, roomID) {
+            performFetch({
+                method: 'POST',
+                url: 'savemessages.php',
+                data: { message, name, roomID },
+                success: function () {
+                    getExistingMessages(); // Reload chat messages
+                },
+                error: function () {
+                    console.log('Error sending message');
+                }
+            });
+        }
+
+        setInterval(getExistingMessages, 1000);
+    </script>
+</body>
+</html>
