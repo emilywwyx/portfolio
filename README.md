@@ -1,4 +1,4 @@
-<img src="intro.jpg"/>
+<img src="heading.jpg"/>
  <hr></hr>
 <p align="center">
   <samp>
