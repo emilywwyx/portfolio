@@ -1,4 +1,4 @@
-### Notes for PHP-based Projects in Yuxin Wang's Portfolio
+### Notes for PHP-based Projects in the Portfolio
 
 The following projects in the portfolio cannot run directly on GitHub Pages because they require server-side functionality provided by PHP. GitHub Pages is a static hosting platform and does not support server-side code. Here’s how you can view these projects:
 
