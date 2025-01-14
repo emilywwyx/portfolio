@@ -1,53 +1,26 @@
-### Notes for PHP-based Projects in the Portfolio
+Project List with Macro Assignment Numbers
 
-The following projects in the portfolio cannot run directly on GitHub Pages because they require server-side functionality provided by PHP. GitHub Pages is a static hosting platform and does not support server-side code. Here’s how you can view these projects:
+Macro 02: Dynamic Day Enhancer
+An interactive webpage featuring custom greetings, lucky numbers, and dynamic backgrounds based on user input.
 
----
+Macro 03: Pokémon Hide & Seek
+A browser-based game where users hunt for Pokémon hidden in grassy patches, with limited Pokéballs and dynamic gameplay.
 
-#### 📊 Server-side Quizzing System
-- **Description:**
-  - A PHP-based quiz application where users answer questions, view personalized results, and check aggregate statistics.
-  - Features include cookies to save past responses and dynamic results visualization.
-- **Why it cannot run on GitHub Pages:**
-  - This project processes quiz answers using PHP scripts and saves data server-side.
-- **How to view it:**
-  - Use a local PHP environment like **MAMP**, **XAMPP**, or **WAMP** to run the project locally.
-  - Alternatively, deploy it to a server that supports PHP (e.g., a university's i6 server).
+Macro 05: Seasonal To-Do List
+A task management system for organizing seasonal activities, featuring item creation, filters, and interactive editing.
 
----
+Macro 06: Matching Game
+A fast-paced memory game testing players' concentration with dynamic gameplay and a high-score leaderboard.
 
-#### 📂 Database-driven Website
-- **Description:**
-  - A PHP-powered web application for managing a database. Users can view, add, delete, and search records.
-  - The project showcases CRUD (Create, Read, Update, Delete) operations integrated with a database like SQLite.
-- **Why it cannot run on GitHub Pages:**
-  - It requires PHP to interact with the database and process form submissions server-side.
-- **How to view it:**
-  - Host the project locally using tools like **MAMP**, **XAMPP**, or **WAMP**.
-  - Ensure the database is stored securely (preferably outside the public folder) to prevent unauthorized access.
+Macro 07: Server-side Quizzing System
+A PHP-based quiz application where users answer questions, view personalized results, and access aggregate statistics.
+Note: Requires a PHP environment (e.g., MAMP) to run locally.
 
----
+Macro 08: Database-driven Website
+A PHP-powered application for interacting with a database, allowing users to view, add, delete, and search records.
+Note: Requires a PHP environment (e.g., MAMP) to run locally.
 
-#### 💬 Let's Chat!
-- **Description:**
-  - A multi-user chatroom application with nickname registration, real-time message updates, and multiple chatroom support.
-  - Includes an admin interface for clearing chat logs and viewing system usage.
-- **Why it cannot run on GitHub Pages:**
-  - This project relies on PHP for handling chat messages, storing data (either in text files or a database), and providing live updates via AJAX.
-- **How to view it:**
-  - Set up a local PHP environment (e.g., **MAMP**, **XAMPP**, or **WAMP**).
-  - Deploy the project to a PHP-enabled server for full functionality.
-
----
-
-### General Instructions for Viewing These Projects
-1. **Install a Local PHP Environment:**
-   - Download and install a tool like **MAMP**, **XAMPP**, or **WAMP**.
-   - Place the project files in the server’s document root (e.g., `htdocs` for XAMPP).
-
-2. **Access the Projects Locally:**
-   - Open your browser and navigate to `http://localhost/`, followed by the project folder name (e.g., `http://localhost/server-side-quiz`).
-
-3. **Deploy to a Server:**
-   - Use a hosting service that supports PHP (e.g., university-provided servers or paid hosting services).
-   - Ensure correct permissions for data folders and proper configuration of sensitive files like `config.php`.
+Macro 09: Let's Chat!
+A PHP-based multi-user chatroom application featuring nickname registration, real-time updates, and multiple chatroom support.
+Includes an admin interface for clearing chat logs and viewing system usage.
+Note: Requires a PHP environment (e.g., MAMP) to run locally.
